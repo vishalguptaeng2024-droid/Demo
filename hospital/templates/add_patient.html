@@ -1,0 +1,38 @@
+{% extends 'navigationbar.html' %}
+{% load static %}
+{% block body %}
+<div class="container" style="margin-top:50px; background-color: rgb(233, 212, 127); color: rgb(25, 50, 0);">
+    <h2 class="text-center">Add Patient</h2>
+    <br><br>
+    <form method="post" action="">
+        {% csrf_token %}
+        <label for="">Patient Name</label>
+        <input type="text" class="form-control" name="name" required>
+        <label for="">Gender</label>
+        <input type="radio" name="gender" value="Male" required> Male
+        <input type="radio" name="gender" value="Female" required> Female
+        <br>
+        <label for="">Contact</label>
+        <input type="text" class="form-control" name="mobile" required>
+        <label for="">Address</label>
+        <textarea class="form-control" name="address" required></textarea>
+        <br>
+        <input type="submit" value="Submit" class="form-control btn btn-primary">
+    </form>
+</div>
+
+
+{% if error == "no" %}
+<script>
+    alert('Record Saved Successfully');
+    window.location = "{% url 'view_patient' %}";
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong, Try Again');
+</script>
+{% endif %}
+
+{% endblock %}
